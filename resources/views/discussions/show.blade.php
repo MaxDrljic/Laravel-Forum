@@ -17,10 +17,11 @@
                 {{ $d->content }}
             </p>
         </div>
-        <div class="panel-footer">
-            <p>
+        <div class="card-footer">
+            <span>
                 {{ $d->replies->count() }} Replies
-            </p>
+            </span>
+            <a href="{{ route('channel', ['slug' => $d->channel->slug]) }}" class="btn btn-default btn-sm float-right">{{ $d->channel->title }}</a>
         </div>
     </div>
 
@@ -36,7 +37,7 @@
                     {{ $r->content }}
                 </p>
             </div>
-            <div class="panel-footer">
+            <div class="card-footer">
                 @if($r->is_liked_by_auth_user())
                     <a href="{{ route('reply.unlike', ['id' => $r->id]) }}" class="btn btn-danger btn-sm">Unlike <span class="badge">{{ $r->likes->count() }}</span></a>
                 @else

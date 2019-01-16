@@ -17,10 +17,11 @@
                     {{ str_limit($d->content, 100) }}
                 </p>
             </div>
-            <div class="panel-footer">
-                <p>
+            <div class="card-footer">
+                <span>
                     {{ $d->replies->count() }} Replies
-                </p>
+                </span>
+                <a href="{{ route('channel', ['slug' => $d->channel->slug]) }}" class="btn btn-default btn-sm float-right">{{ $d->channel->title }}</a>
             </div>
         </div>
     @endforeach
