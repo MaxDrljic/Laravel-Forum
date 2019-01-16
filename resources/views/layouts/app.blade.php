@@ -89,6 +89,15 @@
                         <br><br>
 
                         <div class="card">
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="/forum" style="text-decoration: none;">Home</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card">
                             <div class="card-header">Channels</div>
                             <div class="card-body">
                                 <ul class="list-group">
