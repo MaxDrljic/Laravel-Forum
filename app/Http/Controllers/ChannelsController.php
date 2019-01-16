@@ -40,7 +40,8 @@ class ChannelsController extends Controller
         ]);
 
         Channel::create([
-            'title' => $request->channel
+            'title' => $request->channel,
+            'slug'  => str_slug($request->channel)
         ]);
 
         toastr()->success('Channel created!');
@@ -82,6 +83,7 @@ class ChannelsController extends Controller
         $channel = Channel::find($id);
 
         $channel->title = $request->channel;
+        $channel->slug = str_slug($request->channel);
         $channel->save();
 
         toastr()->success('Channel successfully updated!');

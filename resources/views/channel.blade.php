@@ -26,6 +26,6 @@
     @endforeach
 
     <div class="text-center">
-        {{ $discussions->links() }}
+      {{ $discussions->links() }}
     </div>
 @endsection
