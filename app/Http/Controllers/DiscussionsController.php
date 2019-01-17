@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\User;
+use App\Reply;
 use App\Discussion;
 use Illuminate\Http\Request;
 
@@ -38,5 +40,28 @@ class DiscussionsController extends Controller
     public function show($slug)
     {
         return view('discussions.show')->with('d', Discussion::where('slug', $slug)->first());
+    }
+
+    public function reply($id)
+    {
+        $d = Discussion::find($id);
+
+        $reply = Reply::create([
+            'user_id'           => Auth::id(),
+            'discussion_id'     => $id,
+            'content'           => request()->reply
+        ]);
+
+        $watchers = array();
+
+        foreach($d->watchers as $watcher):
+            array_push($watchers, User::find($watcher->user_id));
+        endforeach;
+
+        
+        
+        toastr()->success('Replied to discussion!');
+
+        return redirect()->back();
     }
 }
