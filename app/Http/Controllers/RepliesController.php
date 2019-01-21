@@ -39,6 +39,9 @@ class RepliesController extends Controller
         $reply->best_answer = 1;
         $reply->save();
 
+        $reply->user->points += 100;
+        $reply->user->save();
+
         toastr()->success('Reply has been makred as the best answer!');
         return redirect()->back();
     }
