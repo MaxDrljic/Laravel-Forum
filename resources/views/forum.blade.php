@@ -6,7 +6,12 @@
             <div class="card-header">
                 <img src="{{ $d->user->avatar }}" alt="" width="40px" height="40px">&nbsp;&nbsp;&nbsp;
                 <span>{{ $d->user->name }}, <b>{{ $d->created_at->diffForHumans() }}</b></span>
-                <a href="{{ route('discussion', ['slug' => $d->slug]) }}" class="btn btn-default float-right">View Post</a>
+                @if($d->hasBestAnswer())
+                    <span class="btn float-right btn-success btn-sm">Closed</span>
+                @else
+                    <span class="btn float-right btn-danger btn-sm">Open</span>    
+                @endif
+                <a href="{{ route('discussion', ['slug' => $d->slug]) }}" class="btn btn-default btn-sm float-right">View Post</a>
             </div>
 
             <div class="card-body">
