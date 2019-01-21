@@ -5,6 +5,13 @@
         <div class="card-header">
             <img src="{{ $d->user->avatar }}" alt="" width="40px" height="40px">&nbsp;&nbsp;&nbsp;
             <span>{{ $d->user->name }}, <b>( {{ $d->user->points }} )</b></span>
+
+            @if($d->hasBestAnswer())
+                <span class="btn float-right btn-success btn-sm" style="margin-right: 8px;">Closed</span>
+            @else
+                <span class="btn float-right btn-danger btn-sm" style="margin-right: 8px;">Open</span>    
+            @endif
+
             @if($d->is_being_watched_by_auth_user())
                 <a href="{{ route('discussion.unwatch', ['id' => $d->id]) }}" class="btn btn-default btn-xs pull-right">Unwatch</a>
             @else

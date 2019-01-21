@@ -14,9 +14,10 @@ class ForumsController extends Controller
     {
         // $discussions = Discussion::orderBy('created_at', 'desc')->paginate(3);
 
+        // Filters
         switch(request('filter')) {
             case 'me':
-                $results = Discussion::where('user_id', Auth::id()->paginate(3));
+                $results = Discussion::where('user_id', Auth::id())->paginate(3);
                 break;
             case 'solved':
                 $answered = array();
