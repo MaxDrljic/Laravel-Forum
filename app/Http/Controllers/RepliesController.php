@@ -45,4 +45,25 @@ class RepliesController extends Controller
         toastr()->success('Reply has been makred as the best answer!');
         return redirect()->back();
     }
+
+    public function edit($id)
+    {
+        return view('replies.edit', ['reply' => Reply::find($id)]);
+    }
+
+    public function update($id)
+    {
+        $this->validate(request(), [
+            'content' => 'required'
+        ]);
+
+        $reply = Reply::find($id);
+
+        $reply->content = request()->content;
+        $reply->save();
+
+        toastr()->success('Reply updated!');
+
+        return redirect()->route('discussion', ['slug' => $reply->discussion->slug]);
+    }
 }
